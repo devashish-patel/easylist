@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:easylist/components/add_product_button.dart';
 import 'package:easylist/components/product_list.dart';
+import 'package:easylist/models/product.dart';
+import 'package:flutter/material.dart';
 
 class Products extends StatefulWidget {
-  final String initialProduct;
-
-  Products({this.initialProduct = 'Intial Product'});
-
   @override
   State<StatefulWidget> createState() {
     return _Product();
@@ -15,20 +12,34 @@ class Products extends StatefulWidget {
 
 class _Product extends State<Products> {
   Widget get navBarTitle => Text('Products');
-  final List<String> _products = [];
+  final List<Product> _products = [];
 
   @override
   void initState() {
     super.initState();
 
+    Map initProd = {
+      'name': 'Initial Product',
+      'price': 100.0,
+      'imageLink': 'images/burger.jpeg'
+    };
+
+    Product initialProd = Product.fromJson(initProd);
+
     //TODO: Call `datasource` from here and populate the products
     //FIXME: Remove this after final implementation
-    _products.add(widget.initialProduct);
+    _products.add(initialProd);
   }
 
-  void _addProduct(String product) {
+  void _addProduct(Product product) {
     setState(() {
       _products.add(product);
+    });
+  }
+
+  void _removeProduct(int i) {
+    setState(() {
+      _products.removeAt(i);
     });
   }
 
@@ -41,7 +52,7 @@ class _Product extends State<Products> {
           Container(
               child: AddProduct(_addProduct), margin: EdgeInsets.all(10.0)),
           Expanded(
-            child: ProductList(_products),
+            child: ProductList(_products, _removeProduct),
           )
         ],
       ),

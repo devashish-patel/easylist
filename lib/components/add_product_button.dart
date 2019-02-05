@@ -1,3 +1,4 @@
+import 'package:easylist/models/product.dart';
 import 'package:flutter/material.dart';
 
 class AddProduct extends StatelessWidget {
@@ -13,7 +14,10 @@ class AddProduct extends StatelessWidget {
       onPressed: () {
         // TODO: Navigate to add product page
         // FIXME: Remove this manual entry
-        addProduct('Foo');
+        var prod = {'name': 'Foo', 'price': 200.0};
+
+        Product sampleProd = Product.fromJson(prod);
+        addProduct(sampleProd);
       },
     );
   }

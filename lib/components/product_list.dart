@@ -1,22 +1,40 @@
+import 'package:easylist/models/product.dart';
+import 'package:easylist/screens/product_details.dart';
 import 'package:flutter/material.dart';
 
 class ProductList extends StatelessWidget {
-  final List<String> products;
+  final List<Product> products;
+  final Function removeProduct;
 
-  ProductList(this.products);
+  ProductList(this.products, this.removeProduct);
 
   Widget _productList(BuildContext context, int i) {
+    Product product = products[i];
+
     return Card(
       child: Column(
         children: <Widget>[
-          Image.asset('images/burger.jpeg'),
-          Text('${products[i]} - $i'),
+          Image.asset(
+            product.imageLink,
+            height: 300.0,
+            width: 500.0,
+          ),
+          Text('${product.name} - $i'),
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
               FlatButton(
                 child: Text('Details'),
-                onPressed: () {},
+                onPressed: () {
+                  return Navigator.push<bool>(context,
+                      MaterialPageRoute(builder: (BuildContext context) {
+                    return ProductDetails(product);
+                  })).then((canDelete) {
+                    if (canDelete) {
+                      removeProduct(i);
+                    }
+                  });
+                },
               )
             ],
           )
