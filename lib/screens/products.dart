@@ -1,5 +1,6 @@
 import 'package:easylist/components/add_product_button.dart';
 import 'package:easylist/components/product_list.dart';
+import 'package:easylist/components/products_drawer.dart';
 import 'package:easylist/models/product.dart';
 import 'package:flutter/material.dart';
 
@@ -46,6 +47,7 @@ class _Product extends State<Products> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: ProductsDrawer(),
       appBar: AppBar(title: navBarTitle),
       body: Column(
         children: <Widget>[
