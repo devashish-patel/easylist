@@ -15,6 +15,7 @@ class AppRoutes {
     router.notFoundHandler = new Handler(
         handlerFunc: (BuildContext context, Map<String, List<String>> params) {
       print("ROUTE WAS NOT FOUND !!!");
+      return Products();
     });
 
     router.define(admin, handler: adminHandler);
