@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:easylist/screens/products.dart';
+import 'package:easylist/components/manu_item.dart';
+import 'package:easylist/routes.dart';
 
 class ManageProductsDrawer extends StatelessWidget {
   Widget get drawerTitle => Text('All Products');
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Drawer(
       child: Column(
         children: <Widget>[
@@ -14,15 +17,11 @@ class ManageProductsDrawer extends StatelessWidget {
             title: drawerTitle,
             centerTitle: true,
           ),
-          ListTile(
-            title: Text('All Products'),
-            onTap: () {
-              return Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                return Products();
-              }));
-            },
-          )
+          MenuItem(
+              title: 'All Products',
+              leading: Icon(Icons.list),
+              textStyle: textTheme.body2,
+              route: AppRoutes.products),
         ],
       ),
     );
