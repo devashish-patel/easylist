@@ -16,9 +16,7 @@ class ProductDetails extends StatelessWidget {
         RaisedButton(
           color: Theme.of(context).accentColor,
           child: Text('Delete'),
-          onPressed: () {
-            return Navigator.pop(context, true);
-          },
+          onPressed: () => Navigator.pop(context, true),
         ),
         Image.asset(
           product.imageLink,

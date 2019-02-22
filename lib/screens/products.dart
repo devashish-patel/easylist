@@ -44,20 +44,23 @@ class _Product extends State<Products> {
     });
   }
 
+  Widget view(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Container(child: AddProduct(_addProduct), margin: EdgeInsets.all(10.0)),
+        Expanded(
+          child: ProductList(_products, _removeProduct),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: ProductsDrawer(),
       appBar: AppBar(title: navBarTitle),
-      body: Column(
-        children: <Widget>[
-          Container(
-              child: AddProduct(_addProduct), margin: EdgeInsets.all(10.0)),
-          Expanded(
-            child: ProductList(_products, _removeProduct),
-          )
-        ],
-      ),
+      body: view(context),
     );
   }
 }

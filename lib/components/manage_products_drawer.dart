@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:easylist/screens/products_admin.dart';
+import 'package:easylist/screens/products.dart';
 
-class ProductsDrawer extends StatelessWidget {
-  Widget get drawerTitle => Text('Options');
+class ManageProductsDrawer extends StatelessWidget {
+  Widget get drawerTitle => Text('All Products');
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -14,11 +15,11 @@ class ProductsDrawer extends StatelessWidget {
             centerTitle: true,
           ),
           ListTile(
-            title: Text('Manage Product'),
+            title: Text('All Products'),
             onTap: () {
               return Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (BuildContext context) {
-                return ProductsAdminScreen();
+                return Products();
               }));
             },
           )
