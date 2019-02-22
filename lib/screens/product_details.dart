@@ -8,6 +8,30 @@ class ProductDetails extends StatelessWidget {
   ProductDetails(this.product);
   Widget get navBarTitle => Text(product.name);
 
+  Widget deleteWarning(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Are you sure?'),
+            content: Text('This can\'t be undone!'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('No'),
+                onPressed: () => Navigator.pop(context),
+              ),
+              FlatButton(
+                child: Text('Yes'),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context, true);
+                },
+              )
+            ],
+          );
+        });
+  }
+
   Widget productDetails(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -16,7 +40,7 @@ class ProductDetails extends StatelessWidget {
         RaisedButton(
           color: Theme.of(context).accentColor,
           child: Text('Delete'),
-          onPressed: () => Navigator.pop(context, true),
+          onPressed: () => deleteWarning(context),
         ),
         Image.asset(
           product.imageLink,
